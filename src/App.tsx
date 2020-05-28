@@ -5,16 +5,18 @@ import { Homepage } from "./Homepage";
 
 const App: React.FC = () => {
   return (
-    <Router>
-      {/* <Navbar /> */}
-      <ScrollToTop>
-        <Switch>
-          <Route exact path="/" render={() => <Homepage />} />
-          {/* <Route path="/resources" render={() => <Resources />} />
+    <div style={{ textAlign: "center", margin: "auto" }}>
+      <Router>
+        {/* <Navbar /> */}
+        <ScrollToTop>
+          <Switch>
+            <Route exact path="/" render={() => <Homepage />} />
+            {/* <Route path="/resources" render={() => <Resources />} />
           <Route path="/live-comments" render={() => <LiveComments />} /> */}
-        </Switch>
-      </ScrollToTop>
-    </Router>
+          </Switch>
+        </ScrollToTop>
+      </Router>
+    </div>
   );
 };
 

@@ -1,5 +1,4 @@
 import React from "react";
+import { MainHeader } from "Components";
 
-export const Homepage: React.FC = () => (
-  <h1>Welcome to the homepage of WebDev Lessons!</h1>
-);
+export const Homepage: React.FC = () => <MainHeader />;
