@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import ScrollToTop from "react-router-scroll-top";
+import { Homepage } from "./Homepage";
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      {/* <Navbar /> */}
+      <ScrollToTop>
+        <Switch>
+          <Route exact path="/" render={() => <Homepage />} />
+          {/* <Route path="/resources" render={() => <Resources />} />
+          <Route path="/live-comments" render={() => <LiveComments />} /> */}
+        </Switch>
+      </ScrollToTop>
+    </Router>
   );
-}
+};
 
 export default App;
