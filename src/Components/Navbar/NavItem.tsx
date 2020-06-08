@@ -4,19 +4,19 @@ import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import { Link } from "Components";
 import { NavPageType } from "./Navbar";
 import { StyledPopper, SubLinksBox, DropDownLink } from "./elements";
+import { UseIsMobile } from "Hooks";
 
 export const NavItem = ({
   ItemData: { name, location, icon, sublinks },
   NavButton,
-  isMobile,
   clickEvent,
 }: {
   NavButton: React.ElementType;
   ItemData: NavPageType;
-  isMobile: boolean;
   clickEvent: number;
 }) => {
   const [buttonRef, setButtonRef] = useState();
+  const { isMobile } = UseIsMobile();
   const subMenuIsDown = Boolean(buttonRef);
 
   useEffect(() => {

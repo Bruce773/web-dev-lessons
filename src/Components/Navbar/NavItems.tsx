@@ -3,12 +3,12 @@ import Toolbar from "@material-ui/core/Toolbar";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import { Link } from "Components";
 import { navPages } from "./Navbar";
 import { StyledHeader, MobileNavButton } from "./elements";
 import { NavItem } from "./NavItem";
+import { UseIsMobile } from "Hooks";
 
 const LinkMainHeader: React.FC<{ isMobile: boolean }> = ({ isMobile }) => (
   <Link to="/">
@@ -29,7 +29,6 @@ const NavItemsList: React.FC<{ isMobile: boolean; clickEvent: number }> = ({
       <NavItem
         clickEvent={clickEvent}
         key={itemData.name}
-        isMobile={isMobile}
         ItemData={{ ...itemData }}
         NavButton={isMobile ? MobileNavButton : Button}
       />
@@ -38,8 +37,8 @@ const NavItemsList: React.FC<{ isMobile: boolean; clickEvent: number }> = ({
 );
 
 export const NavItems: React.FC = () => {
-  const isMobile = !useMediaQuery("(min-width:600px)");
-  const [showNavMenu, setShowNavMenu] = useState(!isMobile);
+  const { isMobile } = UseIsMobile();
+  const [showNavMenu, setShowNavMenu] = useState(false);
   const [clickEvent, setClickEvent] = useState(0);
 
   useEffect(() => {
@@ -50,7 +49,7 @@ export const NavItems: React.FC = () => {
   return (
     <>
       <ClickAwayListener
-        // Cause a state change to trickle down to dropdown submenus
+        // Trigger a state change to trickle down to dropdown submenus
         onClickAway={() => setClickEvent(n => (n < 2 ? n + 1 : 0))}
       >
         <div>
