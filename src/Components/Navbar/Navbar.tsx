@@ -29,7 +29,7 @@ export const navPages: NavPageType[] = [
     icon: <CodeIcon fontSize="small" style={{ marginRight: "5px" }} />,
     sublinks: [
       {
-        name: "Our Courses",
+        name: "All Courses",
         icon: <InfoIcon fontSize="small" style={{ marginRight: "5px" }} />,
         location: "/our-courses",
       },

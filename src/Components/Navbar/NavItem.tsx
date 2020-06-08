@@ -26,19 +26,26 @@ export const NavItem = ({
   return (
     <>
       <Link style={{ textAlign: "center" }} to={location ? location : ""}>
-        <NavButton
+        <div
           onClick={(e: any) => {
+            console.log(buttonRef, subMenuIsDown);
             setButtonRef(buttonRef ? undefined : e.currentTarget);
           }}
         >
-          {isMobile && icon}
-          {name}
-          {sublinks?.length &&
-            (subMenuIsDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
-        </NavButton>
+          <NavButton>
+            {isMobile && icon}
+            {name}
+            {sublinks?.length &&
+              (subMenuIsDown ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />)}
+          </NavButton>
+        </div>
       </Link>
       {sublinks && sublinks.length && (
-        <StyledPopper anchorEl={buttonRef} open={subMenuIsDown}>
+        <StyledPopper
+          isMobile={isMobile}
+          anchorEl={buttonRef}
+          open={subMenuIsDown}
+        >
           <SubLinksBox>
             {sublinks.map(({ name, location, icon }) => (
               <DropDownLink

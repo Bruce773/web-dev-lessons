@@ -31,9 +31,10 @@ export const SubLinksBox = styled.div`
   padding-right: 5px;
 `;
 
-export const StyledPopper = styled(Popper)`
+export const StyledPopper = styled(Popper)<{ isMobile?: boolean }>`
   && {
     z-index: 999999;
+    ${({ isMobile }) => isMobile && "width: 52%"};
   }
 `;
 
