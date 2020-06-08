@@ -6,7 +6,7 @@ import CodeIcon from "@material-ui/icons/Code";
 import { SecondaryGrey } from "Colors";
 import { NavItems } from "./NavItems";
 
-interface NavPageType {
+export interface NavPageType {
   name: string;
   location?: string;
   icon: JSX.Element;
