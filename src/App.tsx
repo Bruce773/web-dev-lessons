@@ -13,8 +13,6 @@ const App: React.FC = () => {
         <ScrollToTop>
           <Switch>
             <Route exact path="/" render={() => <Homepage />} />
-            {/* <Route path="/resources" render={() => <Resources />} />
-          <Route path="/live-comments" render={() => <LiveComments />} /> */}
           </Switch>
         </ScrollToTop>
       </Router>

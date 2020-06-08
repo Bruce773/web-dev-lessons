@@ -33,6 +33,16 @@ export const navPages: NavPageType[] = [
         icon: <InfoIcon fontSize="small" style={{ marginRight: "5px" }} />,
         location: "/our-courses",
       },
+      {
+        name: "HTML",
+        icon: <InfoIcon fontSize="small" style={{ marginRight: "5px" }} />,
+        location: "/course-html",
+      },
+      {
+        name: "JavaScript",
+        icon: <InfoIcon fontSize="small" style={{ marginRight: "5px" }} />,
+        location: "/course-javascript",
+      },
     ],
   },
 ];
