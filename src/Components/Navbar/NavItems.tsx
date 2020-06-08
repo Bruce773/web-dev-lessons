@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Toolbar from "@material-ui/core/Toolbar";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
@@ -42,33 +42,43 @@ export const NavItems: React.FC = () => {
   const [showNavMenu, setShowNavMenu] = useState(!isMobile);
   const [clickEvent, setClickEvent] = useState(0);
 
+  useEffect(() => {
+    setShowNavMenu(v => (v && isMobile && clickEvent !== 0 ? false : v));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clickEvent]);
+
   return (
     <>
-      <ClickAwayListener onClickAway={() => setClickEvent(n => n + 1)}>
-        <Toolbar>
-          {isMobile ? (
-            <>
-              <IconButton
-                onClick={() => setShowNavMenu(!showNavMenu)}
-                style={{ paddingLeft: "0px" }}
-              >
-                <MenuIcon />
-              </IconButton>
-              <div style={{ paddingLeft: "12px" }}>
+      <ClickAwayListener
+        // Cause a state change to trickle down to dropdown submenus
+        onClickAway={() => setClickEvent(n => (n < 2 ? n + 1 : 0))}
+      >
+        <div>
+          <Toolbar>
+            {isMobile ? (
+              <>
+                <IconButton
+                  onClick={() => setShowNavMenu(!showNavMenu)}
+                  style={{ paddingLeft: "0px" }}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <div style={{ paddingLeft: "12px" }}>
+                  <LinkMainHeader isMobile={isMobile} />
+                </div>
+              </>
+            ) : (
+              <>
                 <LinkMainHeader isMobile={isMobile} />
-              </div>
-            </>
-          ) : (
-            <>
-              <LinkMainHeader isMobile={isMobile} />
-              <NavItemsList clickEvent={clickEvent} isMobile={isMobile} />
-            </>
+                <NavItemsList clickEvent={clickEvent} isMobile={isMobile} />
+              </>
+            )}
+          </Toolbar>
+          {isMobile && showNavMenu && (
+            <NavItemsList clickEvent={clickEvent} isMobile={isMobile} />
           )}
-        </Toolbar>
+        </div>
       </ClickAwayListener>
-      {isMobile && showNavMenu && (
-        <NavItemsList clickEvent={clickEvent} isMobile={isMobile} />
-      )}
     </>
   );
 };
