@@ -28,7 +28,6 @@ export const NavItem = ({
       <Link style={{ textAlign: "center" }} to={location ? location : ""}>
         <div
           onClick={(e: any) => {
-            console.log(buttonRef, subMenuIsDown);
             setButtonRef(buttonRef ? undefined : e.currentTarget);
           }}
         >
